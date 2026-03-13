@@ -125,64 +125,41 @@
             margin-right: 8px;
         }
 
-        /* ===== Method layout redesigned for AesRM figures ===== */
+        /* ===== Method: vertical (figure -> text -> figure -> text) ===== */
         .method-container { max-width: 1100px; }
         
-        /* Big top figure */
-        .method-hero {
+        .method-figure{
           background: #fff;
           border: 1px solid var(--border-color);
           border-radius: 12px;
           box-shadow: var(--shadow-sm);
-          overflow: hidden;
-          padding: 12px;
-          margin: 0 auto 22px;
+          padding: 14px;
+          margin: 0 auto 16px;
         }
         
-        .method-hero img{
+        .method-figure img{
           width: 100%;
           height: auto;
           display: block;
           object-fit: contain;
         }
         
-        /* Bottom row */
-        .method-lower{
-          display: grid;
-          grid-template-columns: 420px 1fr; /* 左图固定上限，右文字自适应 */
-          gap: 28px;
-          align-items: start;
+        /* Text under each figure */
+        .method-textblock{
+          max-width: 980px;
+          margin: 0 auto 26px;
         }
         
-        .method-left{
-          background: #fff;
-          border: 1px solid var(--border-color);
-          border-radius: 12px;
-          box-shadow: var(--shadow-sm);
-          padding: 12px;
+        /* Optional: make the two H3 look like your current style but centered */
+        .method-textblock h3{
+          text-align: left;      /* 改成 center 也可以 */
+          margin-bottom: 10px;
         }
-        
-        .method-left img{
-          width: 100%;
-          height: auto;
-          display: block;
-          object-fit: contain;
-        }
-        
-        /* Right text block looks like paper */
-        .method-right .caption-item{
-          margin-bottom: 18px;
-        }
-        
-        /* Mobile */
-        @media (max-width: 900px){
-          .method-lower{
-            grid-template-columns: 1fr;
-          }
-          .method-left{
-            max-width: 520px;
-            margin: 0 auto;
-          }
+        .method-textblock p{
+          margin: 0;
+          color: #475569;
+          text-align: justify;
+          line-height: 1.65;
         }
 
         
@@ -587,38 +564,36 @@
       <div class="container method-container">
         <h2>Method</h2>
     
-        <!-- Row 1: big horizontal figure -->
-        <div class="method-hero">
-          <img src="assets/method.png" alt="Method Framework">
+        <!-- Figure 1 (full width) -->
+        <div class="method-figure">
+          <img src="assets/AesRM.png" alt="AesRM Family Figure">
         </div>
     
-        <!-- Row 2: left figure + right text -->
-        <div class="method-lower">
-          <div class="method-left">
-            <img src="assets/AesRM.png" alt="AesRM">
-          </div>
-    
-          <div class="method-right">
-            <div class="caption-item">
-              <h3>AesRM Family</h3>
-              <p>
-                AesRM-Base directly predicts pairwise preferences on VA/VF/VP to provide efficient post-training rewards.
-                AesRM-CoT additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
-              </p>
-            </div>
-    
-            <div class="caption-item">
-              <h3>Three-Stage Training</h3>
-              <p>
-                (1) Atomic Aesthetic Capability Learning improves recognition of basic aesthetic concepts via SFT on curated atomic-aesthetics data.
-                (2) Cold-Start aligns AesRM with structured evaluation protocols, using self-consistency–based CoT synthesis to improve data quality.
-                (3) GRPO further improves evaluation accuracy with additional process rewards.
-              </p>
-            </div>
-          </div>
+        <div class="method-textblock">
+          <h3>AesRM Family</h3>
+          <p>
+            AesRM-Base directly predicts pairwise preferences on VA/VF/VP to provide efficient post-training rewards.
+            AesRM-CoT additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
+          </p>
         </div>
+    
+        <!-- Figure 2 (full width) -->
+        <div class="method-figure">
+          <img src="assets/method.png" alt="Three-Stage Training Figure">
+        </div>
+    
+        <div class="method-textblock">
+          <h3>Three-Stage Training</h3>
+          <p>
+            (1) Atomic Aesthetic Capability Learning improves recognition of basic aesthetic concepts via SFT on curated atomic-aesthetics data.
+            (2) Cold-Start aligns AesRM with structured evaluation protocols, using self-consistency–based CoT synthesis to improve data quality.
+            (3) GRPO further improves evaluation accuracy with additional process rewards.
+          </p>
+        </div>
+    
       </div>
     </section>
+
 
 
     <section id="comparisons">
