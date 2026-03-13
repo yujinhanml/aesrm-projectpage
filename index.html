@@ -124,6 +124,67 @@
             height: 18px;
             margin-right: 8px;
         }
+
+        /* ===== Method layout redesigned for AesRM figures ===== */
+        .method-container { max-width: 1100px; }
+        
+        /* Big top figure */
+        .method-hero {
+          background: #fff;
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          box-shadow: var(--shadow-sm);
+          overflow: hidden;
+          padding: 12px;
+          margin: 0 auto 22px;
+        }
+        
+        .method-hero img{
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: contain;
+        }
+        
+        /* Bottom row */
+        .method-lower{
+          display: grid;
+          grid-template-columns: 420px 1fr; /* 左图固定上限，右文字自适应 */
+          gap: 28px;
+          align-items: start;
+        }
+        
+        .method-left{
+          background: #fff;
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          box-shadow: var(--shadow-sm);
+          padding: 12px;
+        }
+        
+        .method-left img{
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: contain;
+        }
+        
+        /* Right text block looks like paper */
+        .method-right .caption-item{
+          margin-bottom: 18px;
+        }
+        
+        /* Mobile */
+        @media (max-width: 900px){
+          .method-lower{
+            grid-template-columns: 1fr;
+          }
+          .method-left{
+            max-width: 520px;
+            margin: 0 auto;
+          }
+        }
+
         
         /* --- Section Styling --- */
         section { padding: 60px 0; }
@@ -523,45 +584,42 @@
     </section>
 
     <section id="method">
-        <div class="container">
-            <h2>Method</h2>
-            
-            <div class="mixed-layout">
-                
-                <div class="layout-col-left">
-                    <div class="img-wrapper-vertical">
-                        <img src="assets/AesRM.png" alt="AesRM">
-                    </div>
-                </div>
-
-                <div class="layout-col-right">
-                    
-                    <div class="img-wrapper-horizontal">
-                        <img src="assets/method.png" alt="Method Framework">
-                    </div>
-
-                    <div class="caption-row">
-                        
-                        <div class="caption-item">
-                            <h3>AesRM Family</h3>
-                            <p>
-                            AesRM-Base, which directly predicts pairwise preferences on these dimensions to provide efficient post-training rewards and AesRM-CoT, which additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
-                            </p>
-                        </div>
-
-                        <div class="caption-item">
-                            <h3>Method</h3>
-                            <p>
-                               hree-Stage Training of AesRM. (1) Atomic Aesthetic Capability Learning improves AesRM's recognition of basic aesthetic concepts, e.g., correctly classifying shot composition as centered via SFT on a curated atomic-aesthetics dataset. (2) Cold-Start stage aligns AesRM with the structured aesthetic-evaluation protocols, notably using self-consistency–based CoT synthesis to improve training data quality. (3) GRPO stage further improves evaluation accuracy of AesRM with additional process rewards.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+      <div class="container method-container">
+        <h2>Method</h2>
+    
+        <!-- Row 1: big horizontal figure -->
+        <div class="method-hero">
+          <img src="assets/method.png" alt="Method Framework">
         </div>
+    
+        <!-- Row 2: left figure + right text -->
+        <div class="method-lower">
+          <div class="method-left">
+            <img src="assets/AesRM.png" alt="AesRM">
+          </div>
+    
+          <div class="method-right">
+            <div class="caption-item">
+              <h3>AesRM Family</h3>
+              <p>
+                AesRM-Base directly predicts pairwise preferences on VA/VF/VP to provide efficient post-training rewards.
+                AesRM-CoT additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
+              </p>
+            </div>
+    
+            <div class="caption-item">
+              <h3>Three-Stage Training</h3>
+              <p>
+                (1) Atomic Aesthetic Capability Learning improves recognition of basic aesthetic concepts via SFT on curated atomic-aesthetics data.
+                (2) Cold-Start aligns AesRM with structured evaluation protocols, using self-consistency–based CoT synthesis to improve data quality.
+                (3) GRPO further improves evaluation accuracy with additional process rewards.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
 
     <section id="comparisons">
         <div class="container">
