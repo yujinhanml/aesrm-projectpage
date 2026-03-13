@@ -266,6 +266,12 @@
           border-radius: 10px;
           overflow-x: auto;
         }
+        /* CoT 文本：保留换行 + 自动换行 */
+        .cot-text{
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+
         .details-body code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
         
         /* Mobile */
@@ -711,7 +717,7 @@
         <h2 style="margin-bottom: 30px;">Video Aesthetics Evaluation</h2>
     
         <p class="subsection-description" style="text-align:center; max-width: 900px; margin: 0 auto 35px;">
-          Below, based on cases from **AesRMVideo-Bench**, we show that <strong>AesRM</strong> can perform <strong>pairwise aesthetic evaluation</strong> on video pairs.
+          Below, based on cases from AesRMVideo-Bench, we show that AesRM can perform <strong>pairwise aesthetic evaluation</strong> on video pairs.
         </p>
     
         <!-- ===== Case 01 ===== -->
@@ -745,14 +751,14 @@
             <details>
               <summary><span class="badge">AesRM-Base</span> Click to expand</summary>
               <div class="details-body">
-                <answer>视频A相比于视频B在美学、画面合理性方面更好，在真实感上接近。</answer>
+                &lt;answer&gt;视频A相比于视频B在美学、画面合理性方面更好，在真实感上接近。&lt;/answer&gt;
               </div>
             </details>
     
             <details>
               <summary><span class="badge">AesRM-CoT</span> Click to expand</summary>
               <div class="details-body">
-                <think>[美学-a.基础画质与色彩]
+                <pre class="cot-text">&lt;think&gt;[美学-a.基础画质与色彩]
                 提示词要求：画面需体现“夜”景，同时有“南瓜灯”和“串灯”作为光源，应有明暗对比和色彩层次。视频A：画面亮度适中，对比度恰当。南瓜灯的暖橙色光芒与夜晚的冷色调环境形成鲜明对比，光影层次丰富。色彩饱和度自然，整体色调和谐，成功营造了温馨而神秘的万圣节氛围。视频B：画面整体严重偏暗，对比度过高。除了南瓜灯本身，环境几乎全黑，丢失了大量暗部细节。色彩上，除了南瓜灯的橙色，背景完全是冷色调的蓝色，色彩搭配单一，缺乏层次感。得分（A相对B）：1（A的亮度和色彩层次更符合提示词要求，B则因过暗和色彩单一而失分。）
                 
                 [美学-b.时间段]
@@ -798,8 +804,8 @@
                 
                 [画面合理性-e.细节丰富度与环境合理性]
                 提示词要求：画面需包含“美国郊区房屋”、“串灯”、“三个孩子”等元素。视频A：画面细节丰富，背景中的房屋、门窗、绿植、远处的街道和行人共同构成了一个合理且充实的郊区环境。孩子们的服装、道具也基本符合描述。视频B：画面细节匮乏，由于光线问题，环境信息大量缺失，无法有效展现“郊区房屋”的特征，环境显得空洞。得分（A相对B）：1（A在细节丰富度和环境合理性上远胜于B。）
-                [在画面合理性维度对5个细则求和是 0+1+0+0+1=2>0。因此，画面合理性维度累积得分大于0，认为视频A相对视频B在画面合理性更好。]</think>
-                <answer>视频A相比于视频B在美学、画面合理性方面更好，在真实感上接近。</answer>
+                [在画面合理性维度对5个细则求和是 0+1+0+0+1=2>0。因此，画面合理性维度累积得分大于0，认为视频A相对视频B在画面合理性更好。]&lt;/think&gt;
+                &lt;answer&gt;视频A相比于视频B在美学、画面合理性方面更好，在真实感上接近。&lt;/answer&gt;</pre>
               </div>
             </details>
           </div>
