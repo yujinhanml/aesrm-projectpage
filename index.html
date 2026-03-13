@@ -815,17 +815,17 @@
         <div class="aes-case">
           <div class="aes-prompt">
             <span class="aes-prompt-tag">Prompt</span>
-            <span class="aes-prompt-text">"Another prompt..."</span>
+            <span class="aes-prompt-text">Cel-shaded isometric digital art. A vibrant, lush garden teems with life and magical details. At the center, a small ornate hut sits atop a raised wooden platform, its intricately carved walls and softly glowing windows radiating warmth. Inside, shelves overflow with mystical trinkets, enchanted books, and floating glowing orbs pulsing with light. Flower beds bloom in symmetrical patterns, bursting with vivid blossoms in warm tones. Stone statues of griffins, dragons, and foxes stand guard along winding paths, their surfaces weathered yet proud. Koi ponds ripple with movement, reflecting fluttering butterflies and vibrant flora. Brightly colored plants and mushrooms line the walkways, faintly glowing under the soft light of floating fireflies. In the background, stylized trees stretch skyward, their branches swaying gently in a light breeze. Jagged rocks frame the scene, enhancing the sense of quiet wonder. The camera slowly pans from above, revealing the enchanted garden’s full scope, alive with subtle motion and rich detail.</span>
           </div>
     
           <div class="aes-videos">
             <div class="aes-video-col">
               <div class="aes-video-header">Video A</div>
-              <video controls playsinline preload="metadata" src="assets/cases/002/A.mp4"></video>
+              <video controls playsinline preload="metadata" src="assets/cases/case2/A.gif"></video>
             </div>
             <div class="aes-video-col">
               <div class="aes-video-header">Video B</div>
-              <video controls playsinline preload="metadata" src="assets/cases/002/B.mp4"></video>
+              <video controls playsinline preload="metadata" src="assets/cases/case2/B.gif"></video>
             </div>
           </div>
     
@@ -833,21 +833,68 @@
             <details>
               <summary><span class="badge">Expert Label</span> Click to expand</summary>
               <div class="details-body">
-                <p>...</p>
+                视频A在美学表现上优于视频B，尤其在色调、对比度、饱和度和光影层次方面更为出色，而在画面合理性、真实感表达方面两者表现接近。
               </div>
             </details>
     
             <details>
               <summary><span class="badge">AesRM-Base</span> Click to expand</summary>
               <div class="details-body">
-                <pre><code>...</code></pre>
+                &lt;answer&gt;视频A相比于视频B在美学方面更好，在真实感、画面合理性上接近。&lt;/answer&gt;</pre>
               </div>
             </details>
     
             <details>
               <summary><span class="badge">AesRM-CoT</span> Click to expand</summary>
               <div class="details-body">
-                <p>...</p>
+                <pre class="cot-text">&lt;think&gt;[美学-a.基础画质与色彩]
+                    提示词要求：画面需为“Cel-shaded isometric digital art”，特点是色彩“vibrant”、“lush”，但整体氛围是“softly glowing”和“quiet wonder”。这意味着色彩要鲜艳但不能刺眼，对比度要能营造立体感但不能丢失细节。视频A：画面整体亮度和对比度控制得当，呈现出一种柔和的质感。色彩饱和度适中，绿色调为主，搭配花朵的暖色点缀，既符合“vibrant”的要求，又通过光影的微妙变化营造了层次感。整体色调和谐，成功营造了提示词所描述的“enchanted”和“quiet wonder”的氛围。视频B：画面的饱和度过高，尤其是绿色和黄色，显得过于浓艳，略带“数码感”，削弱了画面的细腻度和真实感。对比度也偏高，导致部分高光区域（如树顶和花丛）的细节有所丢失，整体质感不如视频A柔和。得分（A相对B）：1 (视频A的色彩和光影处理更显柔和与精致，更符合提示词中“softly glowing”和“quiet wonder”的氛围要求，而视频B的色彩过于饱和，略显刺眼。)
+                    
+                    [美学-b.时间段]
+                    提示词要求：未明确指定时间段，但“softly glowing windows”和“floating fireflies”暗示了一个光线较暗的环境，如黄昏或夜晚。视频A：准确地表现了一个夜晚的场景。天空是深邃的蓝色，主体建筑和灯笼是主要光源，营造了宁静的夜间氛围。视频B：同样表现了夜晚的场景，天空颜色和光源设置与视频A基本一致。得分（A相对B）：0 (两者在时间段的设定和表现上没有明显差异。)
+                    
+                    [美学-c.布光]
+                    提示词要求：实用光（灯笼、火flies）和场景光（整体环境光）结合，营造温暖、有层次感的氛围。视频A：布光设计精巧。灯笼作为实用光，其光效合理地照亮了周围的小范围区域。整体环境光处理得当，通过明暗过渡塑造了物体的立体感，光影层次丰富。视频B：布光方式与A类似，但整体光感稍平，光影的对比和过渡不如A细腻，使得画面的纵深感和物体的体积感稍弱。得分（A相对B）：1 (视频A的光影层次更丰富，布光效果更具艺术感和立体感。)
+                    
+                    [美学-d.光源]
+                    提示词要求：混合光，包含人工光（灯笼）和自然光（月光）。视频A：很好地表现了混合光源的效果。灯笼的暖黄光与环境的冷色调形成对比，营造了温馨而不失神秘的氛围。视频B：同样表现了混合光源，但灯笼的暖光与环境的融合度稍差，整体光感不如A和谐。得分（A相对B）：1 (视频A对混合光源的处理更和谐、更具美感。)
+                    
+                    [美学-e.光强度]
+                    提示词要求：“softly glowing”暗示了柔光的质感。视频A：整体光线质感偏向柔光，阴影边缘过渡自然，没有生硬的明暗分界线，符合“softly”的描述。视频B：光线质感相对偏硬，对比度更高，阴影边缘更清晰，与“softly”的描述略有出入。得分（A相对B）：1 (视频A的光强度更符合提示词中“softly”的要求。)
+                    
+                    [美学-f.光照方向]
+                    提示词要求：未明确指定光照方向。视频A：采用了类似顶光的布光方式，光源来自画面的上方，符合鸟瞰视角的逻辑，光照方向统一、合理。视频B：光照方向与A一致，同样合理。得分（A相对B）：0 (两者在光照方向上没有差异。)
+                    [在美学维度对6个细则求和是 1+0+1+1+1+0=4>0。因此，美学维度累积得分大于0，认为视频A相对视频B在美学更好。]
+                    
+                    [真实感-a.物体交互真实性]
+                    提示词要求：静态场景为主，主要评估物体摆放的合理性。视频A：场景中的所有元素，如石阶、花坛、小径，都稳固地放置在地面上，没有出现悬浮或穿模的现象。视频B：与视频A一样，所有物体的摆放都符合空间逻辑，接触点准确。得分（A相对B）：0 (两者在物体交互真实性上表现一致。)
+                    
+                    [真实感-b.物理规律遵循度]
+                    提示词要求：静态场景，但有“butterflies fluttering”和“rippling koi ponds”。视频A：画面中有微小的动态元素，如飞舞的蝴蝶和水面的涟漪，其动态效果在卡通渲染风格下是可信的。视频B：动态元素的表现与视频A相同，物理规律遵循度一致。得分（A相对B）：0 (两者在物理规律遵循度上表现一致。)
+                    
+                    [真实感-c.画面与主体稳定性]
+                    提示词要求：画面稳定，主体形态一致。视频A：画面为静态图，所有元素的形态和位置都保持绝对稳定，无任何抖动或变形。视频B：画面同样为静态图，稳定性与A相同。得分（A相对B）：0 (两者均为静态图，稳定性表现一致。)
+                    
+                    [真实感-d.画面清晰度与细节]
+                    提示词要求：画面应包含“intricately carved walls”、“weathered”等细节。视频A：画面清晰，细节丰富。例如，石阶的纹理、花坛中不同种类的植物、小径的缝隙都清晰可见，符合“Cel-shaded isometric”风格下的高细节标准。视频B：画面清晰度与A相当，但如前所述，过高的饱和度在一定程度上影响了细节的呈现，使其不如A的细节观感来得丰富。得分（A相对B）：0 (两者在基础清晰度上接近，细节观感的差异主要源于美学层面的色彩处理，而非真实感维度的清晰度问题。)
+                    [在真实感维度对4个细则求和是 0+0+0+0=0。因此，真实感维度累积得分等于0，认为视频A相对视频B在真实感上接近。]
+                    
+                    [画面合理性-a.景别]
+                    提示词要求：“The camera slowly pans from above, revealing the enchanted garden’s full scope”，暗示需要一个能展现整个花园的远景或大远景。视频A：采用了远景景别，完整地展示了提示词描述的整个花园场景，符合提示词要求。视频B：采用了与视频A完全相同的景别。得分（A相对B）：0 (两者在景别上完全一致且都符合要求。)
+                    
+                    [画面合理性-b.构图]
+                    提示词要求：中心是小屋，周围有花床、石像、池塘。这描述了一种中心构图或平衡构图。视频A：采用了平衡构图，将小屋置于中心区域，周围的花坛、池塘、石像在视觉上形成了对称和平衡，画面稳定和谐。视频B：构图方式与视频A完全相同。得分（A相对B）：0 (两者在构图上完全一致。)
+                    
+                    [画面合理性-c.焦段]
+                    提示词要求：未明确指定焦段，但“isometric”（等轴测）的视角暗示了类似标准镜头的无畸变视角。视频A：画面没有明显的广角或长焦畸变，视角自然，符合标准镜头的视觉效果。视频B：焦段观感与视频A完全相同。得分（A相对B）：0 (两者在焦段上完全一致。)
+                    
+                    [画面合理性-d.拍摄角度]
+                    提示词要求：“from above”，即俯视角度。视频A：采用了高角度的俯视拍摄，符合提示词要求。视频B：拍摄角度与视频A完全相同。得分（A相对B）：0 (两者在拍摄角度上完全一致。)
+                    
+                    [画面合理性-e.细节丰富度与环境合理性]
+                    提示词要求：包含小屋、花床、石像、池塘、蘑菇、树木、岩石等丰富元素。视频A：画面中包含了提示词描述的所有核心元素，且细节刻画到位，环境构建完整，逻辑自洽。视频B：同样包含了所有核心元素，环境构建也与A一致。得分（A相对B）：0 (两者在细节丰富度和环境合理性上表现一致。)
+                    [在画面合理性维度对5个细则求和是 0+0+0+0+0=0。因此，画面合理性维度累积得分等于0，认为视频A相对视频B在画面合理性上接近。]&lt;/think&gt;
+                &lt;answer&gt;视频A相比于视频B在美学方面更好，在真实感、画面合理性上接近。&lt;/answer&gt;</pre>
               </div>
             </details>
           </div>
