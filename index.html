@@ -484,7 +484,7 @@
             </div> -->
 
             <div class="link-buttons">
-                <a href="https://arxiv.org/pdf/2512.16906" class="btn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <a href="https://github.com/yujinhanml/AesRM" class="btn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
                         <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -494,13 +494,13 @@
                     Paper
                 </a>
 
-                <a href="https://github.com/Oliver-Cong02/VIVA" class="btn"> <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <a href="https://github.com/yujinhanml/AesRM" class="btn"> <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                     Code
                 </a>
 
-                <a href="https://arxiv.org/abs/2512.16906" class="btn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <a href="https://github.com/yujinhanml/AesRM" class="btn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                     </svg>
@@ -516,7 +516,7 @@
             <h2>Abstract</h2>
             <div class="abstract-content">
                 <p>
-                    Instruction-based video editing aims to modify an input video according to a natural-language instruction while preserving content fidelity and temporal coherence. However, existing diffusion-based approaches are often trained on paired data of simple editing operations, which fundamentally limits their ability to generalize to diverse and complex, real-world instructions. To address this generalization gap, we propose <b>VIVA</b>, a scalable framework for instruction-based video editing that leverages VLM-guided encoding and reward optimization. First, we introduce a VLM-based instructor that encodes the textual instruction, the first frame of the source video, and an optional reference image into visually-grounded instruction representations, providing fine-grained spatial and semantic context for the diffusion transformer backbone. Second, we propose a post-training stage, Edit-GRPO, which adapts Group Relative Policy Optimization to the domain of video editing, directly optimizing the model for instruction-faithful, content-preserving, and aesthetically pleasing edits using relative rewards. Furthermore, we propose a data construction pipeline designed to synthetically generate diverse, high-fidelity paired video–instruction data of basic editing operations. Extensive experiments show that VIVA achieves superior instruction following, generalization, and editing quality over state-of-the-art methods.
+                    Despite rapid advances in photorealistic video generation, real-world applications such as filmmaking require video aesthetics, e.g., harmonious colors and cinematic lighting, beyond visual fidelity. Prior work on visual aesthetics largely focuses on images, often reducing aesthetics to coarse definitions, e.g., visual pleasure, without a rigorous and systematic evaluation. To improve video aesthetics, we propose a hierarchical rubric that decomposes video aesthetics into three core dimensions, Visual Aesthetics (VA), Visual Fidelity (VF), and Visual Plausibility (VP), with 15 fine-grained criteria, e.g., shot composition. This framework enables a large-scale expert-annotated preference dataset and an evaluation benchmark, \textbf{AesVideo-Bench}, containing about 2500 video pairs with expert annotations on VA, VF, and VP. We then build a family of Video Aesthetic Reward Models (AesRM): \textbf{AesRM-Base}, which directly predicts pairwise preferences on these dimensions to provide efficient post-training rewards and \textbf{AesRM-CoT}, which additionally generates CoT aligned with all 15 criteria to improve assessment interpretability. Specifically, we train AesRM with a three-stage progressive scheme: (1) Atomic Aesthetic Capability Learning, which strengthens AesRM’s recognition of fundamental aesthetic concepts, e.g., accurately identifying centered composition; (2) Cold-Start, aligning the model with structured reasoning protocols; and (3) GRPO, further improving evaluation accuracy. To enhance AesRM-CoT, we additionally propose self-consistency–based CoT synthesis to improve CoT quality and design CoT-based process rewards during GRPO. Extensive experiments show AesRM outperforms baselines on multiple aesthetics benchmarks and is more robust, with lower position bias. Finally, we align Wan2.2 with AesRM and observe clear \textbf{aesthetic gains} over existing aesthetic reward models. Quantitative and qualitative results illustrate AesRM enables models to generate videos with better color, more sophisticated lighting and richer details.
                 </p>
             </div>
         </div>
@@ -530,7 +530,7 @@
                 
                 <div class="layout-col-left">
                     <div class="img-wrapper-vertical">
-                        <img src="assets/editgrpo.png" alt="Edit-GRPO Diagram">
+                        <img src="assets/AesRM.png" alt="AesRM">
                     </div>
                 </div>
 
@@ -543,18 +543,16 @@
                     <div class="caption-row">
                         
                         <div class="caption-item">
-                            <h3>Method Overview</h3>
+                            <h3>AesRM Family</h3>
                             <p>
-                                A context-aware VLM instructor encodes the system prompt, instruction, first frame of the source video, and an optional reference image into VLM tokens.
-                                A trainable token refiner aligns these tokens to the pretrained DiT latent space. 
-                                The VAE encodings of the source video are added to form context-aware noise tokens for denoising.
+                            AesRM-Base, which directly predicts pairwise preferences on these dimensions to provide efficient post-training rewards and AesRM-CoT, which additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
                             </p>
                         </div>
 
                         <div class="caption-item">
-                            <h3>Edit-GRPO</h3>
+                            <h3>Method</h3>
                             <p>
-                                We inject stochasticity via Flow-SDE to generate diverse samples, score them with our reward system, and compute a GRPO loss from the resulting relative advantages to update the model. For efficiency, we optimize a LoRA instead of full fine-tuning.
+                               hree-Stage Training of AesRM. (1) Atomic Aesthetic Capability Learning improves AesRM's recognition of basic aesthetic concepts, e.g., correctly classifying shot composition as centered via SFT on a curated atomic-aesthetics dataset. (2) Cold-Start stage aligns AesRM with the structured aesthetic-evaluation protocols, notably using self-consistency–based CoT synthesis to improve training data quality. (3) GRPO stage further improves evaluation accuracy of AesRM with additional process rewards.
                             </p>
                         </div>
 
