@@ -258,14 +258,35 @@
           padding: 12px 14px 14px;
           color: #475569;
         }
-        .details-body pre{
+        /* .details-body pre{
           margin: 0;
           background: #0b1220;
           color: #e5e7eb;
           padding: 12px;
           border-radius: 10px;
           overflow-x: auto;
+        } */
+
+        .details-body pre.cot-text{
+          margin: 0;
+          background: #ffffff;
+          color: #000000;
+          border: 1px solid #e2e8f0;
+          padding: 12px;
+          border-radius: 10px;
+          overflow-x: auto;
+          white-space: pre-wrap;
+          word-break: break-word;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+          font-size: 13px;
+          line-height: 1.5;
         }
+        
+        .details-body pre.cot-text .cot-hd{
+          color: #3799dd;
+          font-weight: 800;
+        }
+
         /* CoT 文本：保留换行 + 自动换行 */
         .cot-text{
           white-space: pre-wrap;
@@ -936,13 +957,13 @@
             <details>
               <summary><span class="badge">AesRM-CoT</span> Click to expand</summary>
               <div class="details-body">
-                <pre class="cot-text">&lt;think&gt;[美学-a.基础画质与色彩]
+                <pre class="cot-text">&lt;think&gt;<span class="cot-hd">[美学-a.基础画质与色彩]</span>
                             提示词要求画面色彩斑斓、阳光柔和、毛发细腻。这要求画面有适中的亮度和对比度，饱和度不能过高以免失真，色调需和谐统一。视频A：画面整体亮度偏高，对比度较低，导致光影层次感不足。色彩饱和度过高，尤其是小猫的夹克和背景的花朵，颜色过于鲜艳，显得有些刺眼和不自然，缺乏细腻的质感。视频B：画面亮度和对比度适中，光影关系更自然，小猫身上的高光和阴影过渡柔和，塑造了更好的体积感。色彩饱和度控制得当，整体色调和谐，既有活力又不失真，更符合“柔和光束”下的日光感。得分（A相对B）：-1 (视频A的饱和度过高，色彩失真，不如视频B的色彩表现自然和谐。)
                             
-                            [美学-b.时间段]
+                            <span class="cot-hd">[美学-b.时间段]</span>
                             提示词要求“日光照射”，即白天。白天的美学标准是画面明亮，色彩真实自然。视频A：符合白天场景，天空明亮，光线充足。视频B：符合白天场景，光线带有傍晚的暖调，同样属于白天的范畴。得分（A相对B）：0 (两者都成功表现了白天的时间段。)
                             
-                            [美学-c.布光]
+                            <span class="cot-hd">[美学-c.布光]</span>
                             提示词要求“阳光透过云层洒落，形成柔和的光束”，这属于场景光。好的场景光应能塑造立体感并营造氛围。视频A：画面中存在明显的从右上方打来的场景光，在小猫身上形成了高光，但光感较为生硬，立体感塑造一般。视频B：场景光运用得更出色，光线从左后方打来，在小猫的背部和头顶形成了漂亮的轮廓光，同时正面有柔和的补光，使得小猫的立体感和毛发质感都非常出色，氛围营造更成功。得分（A相对B）：-1 (视频B的场景光运用更专业，对主体的塑造和氛围的营造都优于视频A。)
                             
                             [美学-d.光源]
