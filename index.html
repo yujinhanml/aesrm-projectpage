@@ -127,6 +127,11 @@
 
         /* ===== Method: vertical (figure -> text -> figure -> text) ===== */
         .method-container { max-width: 1100px; }
+
+        .method-block{
+          max-width: 980px;
+          margin: 0 auto 30px;
+        }
         
         .method-figure{
           background: #fff;
@@ -134,7 +139,7 @@
           border-radius: 12px;
           box-shadow: var(--shadow-sm);
           padding: 14px;
-          margin: 0 auto 16px;
+          margin: 12px 0 12px;
         }
         
         .method-figure img{
@@ -144,23 +149,13 @@
           object-fit: contain;
         }
         
-        /* Text under each figure */
-        .method-textblock{
-          max-width: 980px;
-          margin: 0 auto 26px;
-        }
-        
-        /* Optional: make the two H3 look like your current style but centered */
-        .method-textblock h3{
-          text-align: left;      /* 改成 center 也可以 */
-          margin-bottom: 10px;
-        }
-        .method-textblock p{
+        .method-desc{
           margin: 0;
           color: #475569;
           text-align: justify;
           line-height: 1.65;
         }
+
 
         
         /* --- Section Styling --- */
@@ -299,7 +294,7 @@
             text-align: center;
             margin-bottom: 40px;
             font-weight: 800;
-            color: #1e293b;
+            color: #3799dd;
         }
 
         h3 {
@@ -564,27 +559,25 @@
       <div class="container method-container">
         <h2>Method</h2>
     
-        <!-- Figure 1 (full width) -->
-        <div class="method-figure">
-          <img src="assets/AesRM.png" alt="AesRM Family Figure">
-        </div>
-    
-        <div class="method-textblock">
+        <!-- Block 1 -->
+        <div class="method-block">
           <h3>AesRM Family</h3>
-          <p>
+          <div class="method-figure">
+            <img src="assets/AesRM.png" alt="AesRM Family Figure">
+          </div>
+          <p class="method-desc">
             AesRM-Base directly predicts pairwise preferences on VA/VF/VP to provide efficient post-training rewards.
             AesRM-CoT additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
           </p>
         </div>
     
-        <!-- Figure 2 (full width) -->
-        <div class="method-figure">
-          <img src="assets/method.png" alt="Three-Stage Training Figure">
-        </div>
-    
-        <div class="method-textblock">
+        <!-- Block 2 -->
+        <div class="method-block">
           <h3>Three-Stage Training</h3>
-          <p>
+          <div class="method-figure">
+            <img src="assets/method.png" alt="Three-Stage Training Figure">
+          </div>
+          <p class="method-desc">
             (1) Atomic Aesthetic Capability Learning improves recognition of basic aesthetic concepts via SFT on curated atomic-aesthetics data.
             (2) Cold-Start aligns AesRM with structured evaluation protocols, using self-consistency–based CoT synthesis to improve data quality.
             (3) GRPO further improves evaluation accuracy with additional process rewards.
@@ -593,6 +586,7 @@
     
       </div>
     </section>
+
 
 
 
