@@ -157,6 +157,124 @@
         }
 
 
+        /* ===== Video Aesthetics Evaluation (pairwise cases) ===== */
+
+        #comparisons { background: #f8fafc; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        
+        .aes-case{
+          background: #fff;
+          border: 1px solid var(--border-color);
+          border-radius: 16px;
+          box-shadow: var(--shadow-sm);
+          padding: 22px;
+          margin-bottom: 22px;
+        }
+        
+        /* Prompt row */
+        .aes-prompt{
+          display: flex;
+          gap: 12px;
+          align-items: flex-start;
+          margin-bottom: 14px;
+        }
+        .aes-prompt-tag{
+          flex: 0 0 auto;
+          font-weight: 700;
+          color: #3799dd;
+          background: rgba(55,153,221,0.10);
+          border: 1px solid rgba(55,153,221,0.25);
+          padding: 4px 10px;
+          border-radius: 999px;
+          font-size: 0.9rem;
+          margin-top: 2px;
+        }
+        .aes-prompt-text{
+          color: #0f172a;
+          font-weight: 600;
+        }
+        
+        /* Two videos side-by-side */
+        .aes-videos{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-top: 10px;
+          margin-bottom: 14px;
+        }
+        .aes-video-col{
+          background: #fff;
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        .aes-video-header{
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #475569;
+          padding: 10px 12px;
+          border-bottom: 1px solid var(--border-color);
+          background: #f8fafc;
+        }
+        .aes-video-col video{
+          width: 100%;
+          height: auto;
+          display: block;
+          background: #000;
+        }
+        
+        /* Collapsible blocks */
+        .aes-details details{
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          overflow: hidden;
+          margin-top: 10px;
+          background: #fff;
+        }
+        .aes-details summary{
+          cursor: pointer;
+          list-style: none;
+          padding: 12px 14px;
+          font-weight: 700;
+          color: #1e293b;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: #f8fafc;
+        }
+        .aes-details summary::-webkit-details-marker { display: none; }
+        
+        .badge{
+          display: inline-block;
+          padding: 3px 10px;
+          border-radius: 999px;
+          border: 1px solid rgba(55,153,221,0.35);
+          background: rgba(55,153,221,0.10);
+          color: #3799dd;
+          font-weight: 800;
+          font-size: 0.85rem;
+        }
+        
+        .details-body{
+          padding: 12px 14px 14px;
+          color: #475569;
+        }
+        .details-body pre{
+          margin: 0;
+          background: #0b1220;
+          color: #e5e7eb;
+          padding: 12px;
+          border-radius: 10px;
+          overflow-x: auto;
+        }
+        .details-body code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+        
+        /* Mobile */
+        @media (max-width: 900px){
+          .aes-videos{ grid-template-columns: 1fr; }
+        }
+
+
+
         
         /* --- Section Styling --- */
         section { padding: 60px 0; }
@@ -549,7 +667,7 @@
             <h2>Abstract</h2>
             <div class="abstract-content">
                 <p>
-                    Despite rapid advances in photorealistic video generation, real-world applications such as filmmaking require video aesthetics, e.g., harmonious colors and cinematic lighting, beyond visual fidelity. Prior work on visual aesthetics largely focuses on images, often reducing aesthetics to coarse definitions, e.g., visual pleasure, without a rigorous and systematic evaluation. To improve video aesthetics, we propose a hierarchical rubric that decomposes video aesthetics into three core dimensions, Visual Aesthetics (VA), Visual Fidelity (VF), and Visual Plausibility (VP), with 15 fine-grained criteria, e.g., shot composition. This framework enables a large-scale expert-annotated preference dataset and an evaluation benchmark, \textbf{AesVideo-Bench}, containing about 2500 video pairs with expert annotations on VA, VF, and VP. We then build a family of Video Aesthetic Reward Models (AesRM): \textbf{AesRM-Base}, which directly predicts pairwise preferences on these dimensions to provide efficient post-training rewards and \textbf{AesRM-CoT}, which additionally generates CoT aligned with all 15 criteria to improve assessment interpretability. Specifically, we train AesRM with a three-stage progressive scheme: (1) Atomic Aesthetic Capability Learning, which strengthens AesRM’s recognition of fundamental aesthetic concepts, e.g., accurately identifying centered composition; (2) Cold-Start, aligning the model with structured reasoning protocols; and (3) GRPO, further improving evaluation accuracy. To enhance AesRM-CoT, we additionally propose self-consistency–based CoT synthesis to improve CoT quality and design CoT-based process rewards during GRPO. Extensive experiments show AesRM outperforms baselines on multiple aesthetics benchmarks and is more robust, with lower position bias. Finally, we align Wan2.2 with AesRM and observe clear \textbf{aesthetic gains} over existing aesthetic reward models. Quantitative and qualitative results illustrate AesRM enables models to generate videos with better color, more sophisticated lighting and richer details.
+                    Despite rapid advances in photorealistic video generation, real-world applications such as filmmaking require video aesthetics, e.g., harmonious colors and cinematic lighting, beyond visual fidelity. Prior work on visual aesthetics largely focuses on images, often reducing aesthetics to coarse definitions, e.g., visual pleasure, without a rigorous and systematic evaluation. To improve video aesthetics, we propose a hierarchical rubric that decomposes video aesthetics into three core dimensions, Visual Aesthetics (VA), Visual Fidelity (VF), and Visual Plausibility (VP), with 15 fine-grained criteria, e.g., shot composition. This framework enables a large-scale expert-annotated preference dataset and an evaluation benchmark, <strong>AesVideo-Bench</strong>, containing about 2500 video pairs with expert annotations on VA, VF, and VP. We then build a family of Video Aesthetic Reward Models (AesRM): <strong>AesRM-Base</strong>, which directly predicts pairwise preferences on these dimensions to provide efficient post-training rewards and <strong>AesRM-CoT</strong>, which additionally generates CoT aligned with all 15 criteria to improve assessment interpretability. Specifically, we train AesRM with a three-stage progressive scheme: (1) Atomic Aesthetic Capability Learning, which strengthens AesRM’s recognition of fundamental aesthetic concepts, e.g., accurately identifying centered composition; (2) Cold-Start, aligning the model with structured reasoning protocols; and (3) GRPO, further improving evaluation accuracy. To enhance AesRM-CoT, we additionally propose self-consistency–based CoT synthesis to improve CoT quality and design CoT-based process rewards during GRPO. Extensive experiments show AesRM outperforms baselines on multiple aesthetics benchmarks and is more robust, with lower position bias. Finally, we align Wan2.2 with AesRM and observe clear <strong>aesthetic gains</strong> over existing aesthetic reward models. Quantitative and qualitative results illustrate AesRM enables models to generate videos with better color, more sophisticated lighting and richer details.
                 </p>
             </div>
         </div>
@@ -566,8 +684,8 @@
             <img src="assets/AesRM.png" alt="AesRM Family Figure">
           </div>
           <p class="method-desc">
-            AesRM-Base directly predicts pairwise preferences on VA/VF/VP to provide efficient post-training rewards.
-            AesRM-CoT additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
+            <strong>AesRM-Base</strong> directly predicts pairwise preferences on VA/VF/VP to provide efficient post-training rewards.
+            <strong>AesRM-CoT</strong> additionally generates CoT aligned with all 15 criteria to improve assessment interpretability.
           </p>
         </div>
     
@@ -588,425 +706,115 @@
     </section>
 
 
-
-
     <section id="comparisons">
-        <div class="container">
-            <h2 style="margin-bottom: 60px;">Comparison with Baselines</h2>
-
-            <div class="subsection">
-                <h3>Instruction-based Video Editing</h3>
-                <p class="subsection-description">
-                    Please scroll right to view all baselines.<br>
-                    Please press the play button on the top right to pause all videos for more detailed frame-by-frame comparison.<br>
-                    Please refresh the page if the videos are not synchronized properly.
-                </p>
-
-                
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Remove the cigarette from his hand, and add a pair of sunglasses to the man."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/079/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/079/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/079/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/079/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/079/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/079/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/079/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Remove the boy."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/073/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/073/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/073/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/073/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/073/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/073/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/073/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Add an Asian man wearing a white T-shirt Sitting in the driver's seat of a vintage car."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/053/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/053/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/053/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/053/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/053/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/053/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/053/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Change the weather to a torrential downpour."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/033/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/033/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/033/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/033/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/033/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/033/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/033/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Turn the sky to lightning and thunder, and add a little cat running in the grass."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/117/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/117/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/117/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/117/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/117/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/117/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/117/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Add a white dog beside the woman."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/064/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/064/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/064/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/064/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/064/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/064/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/064/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Remove the bowl in the middle."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/083/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/083/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/083/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/083/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/083/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/083/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/083/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Add an combat aircraft to the blue sky."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/063/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/063/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/063/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/063/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/063/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/063/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/063/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Turn the entire scene into autumn."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/105/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/105/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/105/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/105/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/105/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/105/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/105/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Change the material of the train to that made of ice cubes."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/034/src.mp4"></video>
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins/034/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins/034/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins/034/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins/034/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins/034/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins/034/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
+      <div class="container">
+        <h2 style="margin-bottom: 30px;">Video Aesthetics Evaluation</h2>
+    
+        <p class="subsection-description" style="text-align:center; max-width: 900px; margin: 0 auto 35px;">
+          Below we show pairwise comparisons. For each case, we provide the prompt, two candidate videos (A/B),
+          and the expert label as well as AesRM explanations.
+        </p>
+    
+        <!-- ===== Case 01 ===== -->
+        <div class="aes-case">
+          <div class="aes-prompt">
+            <span class="aes-prompt-tag">Prompt</span>
+            <span class="aes-prompt-text">"Your prompt text goes here..."</span>
+          </div>
+    
+          <div class="aes-videos">
+            <div class="aes-video-col">
+              <div class="aes-video-header">Video A</div>
+              <video controls playsinline preload="metadata" src="assets/cases/001/A.mp4"></video>
             </div>
-
-            <hr class="subsection-divider">
-
-            <div class="subsection">
-                <h3>Instruction-Reference-based Video Editing</h3>
-                <p class="subsection-description">
-                    Please scroll right to view all baselines.<br>
-                    Please press the play button on the top right to pause all videos for more detailed frame-by-frame comparison.<br>
-                    Please refresh the page if the videos are not synchronized properly.
-                </p>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Replace the background with Tokyo tower."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/134/src.mp4"></video>
-                        </div>
-                        <div class="video-card ref-card">
-                            <div class="card-header">Reference Image</div>
-                            <img class="ref-portrait" src="assets/comparison/ins_ref/134/ref_image.jpg" alt="Ref">
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/134/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/134/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/134/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/134/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/134/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/134/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Add a yellow clock by the window."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/104/src.mp4"></video>
-                        </div>
-                        <div class="video-card ref-card">
-                            <div class="card-header">Reference Image</div>
-                            <img src="assets/comparison/ins_ref/104/ref_image.jpg" alt="Ref">
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/104/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/104/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/104/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/104/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/104/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/104/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Replace the person with the ultraman."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/137/src.mp4"></video>
-                        </div>
-                        <div class="video-card ref-card">
-                            <div class="card-header">Reference Image</div>
-                            <img src="assets/comparison/ins_ref/137/ref_image.jpg" alt="Ref">
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/137/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/137/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/137/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/137/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/137/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/137/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Replace the upper-clothes with white T-shirt."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/108/src.mp4"></video>
-                        </div>
-                        <div class="video-card ref-card">
-                            <div class="card-header">Reference Image</div>
-                            <img src="assets/comparison/ins_ref/108/ref_image.jpg" alt="Ref">
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/108/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/108/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/108/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/108/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/108/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/108/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Add a brown teddy bear to the man's right shoulder."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/103/src.mp4"></video>
-                        </div>
-                        <div class="video-card ref-card">
-                            <div class="card-header">Reference Image</div>
-                            <img src="assets/comparison/ins_ref/103/ref_image.jpg" alt="Ref">
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/103/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/103/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/103/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/103/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/103/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/103/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Replace the black backpack with wine red backpack."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/138/src.mp4"></video>
-                        </div>
-                        <div class="video-card ref-card">
-                            <div class="card-header">Reference Image</div>
-                            <img src="assets/comparison/ins_ref/138/ref_image.jpg" alt="Ref">
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/138/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/138/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/138/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/138/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/138/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/138/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-                <div class="comparison-block">
-                    <div class="instruction-label">
-                        <span class="instruction-badge">Instruction: "Replace the car with a toy car."</span>
-                    </div>
-                    <div class="scroll-window">
-                        <div class="video-card">
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/130/src.mp4"></video>
-                        </div>
-                        <div class="video-card ref-card">
-                            <div class="card-header">Reference Image</div>
-                            <img src="assets/comparison/ins_ref/130/ref_image.jpg" alt="Ref">
-                        </div>
-                        <div class="video-card is-ours">
-                            <div class="card-header">VIVA (Ours)</div>
-                            <video autoplay loop muted playsinline src="assets/comparison/ins_ref/130/ours.mp4"></video>
-                        </div>
-                        <div class="video-card"><div class="card-header">Runway Aleph</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/130/Runway.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Lucy-Edit-Dev</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/130/Lucy_Edit_Dev.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">Ditto</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/130/Ditto.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">ICVE</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/130/ICVE.mp4"></video></div>
-                        <div class="video-card"><div class="card-header">InsV2V</div><video autoplay loop muted playsinline src="assets/comparison/ins_ref/130/InsV2V.mp4"></video></div>
-                    </div>
-                </div>
-
-
+    
+            <div class="aes-video-col">
+              <div class="aes-video-header">Video B</div>
+              <video controls playsinline preload="metadata" src="assets/cases/001/B.mp4"></video>
             </div>
+          </div>
+    
+          <div class="aes-details">
+            <details>
+              <summary><span class="badge">Expert Label</span> Click to expand</summary>
+              <div class="details-body">
+                <!-- Replace with your label text -->
+                <p><b>VA:</b> A &gt; B &nbsp;&nbsp; <b>VF:</b> tie &nbsp;&nbsp; <b>VP:</b> B &gt; A</p>
+                <p>Short rationale from experts...</p>
+              </div>
+            </details>
+    
+            <details>
+              <summary><span class="badge">AesRM-Base</span> Click to expand</summary>
+              <div class="details-body">
+                <pre><code>VA: A > B
+    VF: B > A
+    VP: tie</code></pre>
+              </div>
+            </details>
+    
+            <details>
+              <summary><span class="badge">AesRM-CoT</span> Click to expand</summary>
+              <div class="details-body">
+                <p><b>Color & Lighting:</b> ...</p>
+                <p><b>Composition:</b> ...</p>
+                <p><b>Artifacts:</b> ...</p>
+              </div>
+            </details>
+          </div>
         </div>
+    
+        <!-- ===== Case 02 (copy & edit) ===== -->
+        <div class="aes-case">
+          <div class="aes-prompt">
+            <span class="aes-prompt-tag">Prompt</span>
+            <span class="aes-prompt-text">"Another prompt..."</span>
+          </div>
+    
+          <div class="aes-videos">
+            <div class="aes-video-col">
+              <div class="aes-video-header">Video A</div>
+              <video controls playsinline preload="metadata" src="assets/cases/002/A.mp4"></video>
+            </div>
+            <div class="aes-video-col">
+              <div class="aes-video-header">Video B</div>
+              <video controls playsinline preload="metadata" src="assets/cases/002/B.mp4"></video>
+            </div>
+          </div>
+    
+          <div class="aes-details">
+            <details>
+              <summary><span class="badge">Expert Label</span> Click to expand</summary>
+              <div class="details-body">
+                <p>...</p>
+              </div>
+            </details>
+    
+            <details>
+              <summary><span class="badge">AesRM-Base</span> Click to expand</summary>
+              <div class="details-body">
+                <pre><code>...</code></pre>
+              </div>
+            </details>
+    
+            <details>
+              <summary><span class="badge">AesRM-CoT</span> Click to expand</summary>
+              <div class="details-body">
+                <p>...</p>
+              </div>
+            </details>
+          </div>
+        </div>
+    
+        <!-- 你后面复制 aes-case 再加到 10 个即可 -->
+    
+      </div>
     </section>
 
+
+
+
+   
     <section id="more-results">
         <div class="container">
             <h2 style="margin-bottom: 40px;">More Challenging Cases</h2>
