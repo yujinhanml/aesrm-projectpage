@@ -1764,5 +1764,22 @@
             });
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre.cot-text').forEach(pre => {
+        // 用 innerHTML 处理：把每行开头的 [xxx] 染色
+        // 注意：你的内容已经是 &lt;think&gt; 这种转义文本，所以这里是安全的
+        const esc = pre.innerHTML;
+    
+        // 匹配：行首（或换行后）紧跟 [....]
+        const colored = esc.replace(/(^|\n)(\[[^\]\n]+\])/g, (m, p1, p2) => {
+          return `${p1}<span class="cot-hd">${p2}</span>`;
+        });
+    
+        pre.innerHTML = colored;
+      });
+    });
+    </script>
+
 </body>
 </html>
