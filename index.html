@@ -300,6 +300,98 @@
           .aes-videos{ grid-template-columns: 1fr; }
         }
 
+        /* ===== Video Aesthetics Alignment (7 videos horizontal scroll) ===== */
+        #alignment { background: #fff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        
+        .align-case{
+          background: #fff;
+          border: 1px solid var(--border-color);
+          border-radius: 16px;
+          box-shadow: var(--shadow-sm);
+          padding: 22px;
+          margin-bottom: 22px;
+        }
+        
+        .align-prompt{
+          display: flex;
+          gap: 12px;
+          align-items: flex-start;
+          margin-bottom: 14px;
+        }
+        .align-prompt-tag{
+          flex: 0 0 auto;
+          font-weight: 800;
+          color: #3799dd;
+          background: rgba(55,153,221,0.10);
+          border: 1px solid rgba(55,153,221,0.25);
+          padding: 4px 10px;
+          border-radius: 999px;
+          font-size: 0.9rem;
+          margin-top: 2px;
+        }
+        .align-prompt-text{
+          color: #0f172a;
+          font-weight: 600;
+        }
+        
+        /* 横向滑动容器 */
+        .align-scroll{
+          display: flex;
+          gap: 14px;
+          overflow-x: auto;
+          padding: 6px 2px 12px;
+          scroll-snap-type: x mandatory;
+        }
+        .align-scroll::-webkit-scrollbar { height: 10px; }
+        .align-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 999px; }
+        .align-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+        
+        /* 每个视频卡片：固定宽度，7个可以横滑 */
+        .align-card{
+          flex: 0 0 240px;               /* 卡片宽度：按你页面调 220~320 */
+          scroll-snap-align: start;
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          background: #fff;
+          overflow: hidden;
+        }
+        
+        .align-card .card-header{
+          text-align: center;
+          font-size: 0.88rem;
+          font-weight: 800;
+          color: #475569;
+          padding: 10px 10px;
+          border-bottom: 1px solid var(--border-color);
+          background: #f8fafc;
+          white-space: nowrap;
+        }
+        
+        /* video */
+        .align-card video{
+          width: 100%;
+          height: auto;
+          display: block;
+          background: #000;
+        }
+        
+        /* 高亮：AesRM-Base / AesRM-CoT 蓝色外框 */
+        .align-card.is-aesrm{
+          border: 2px solid #3799dd;
+          box-shadow: 0 6px 18px rgba(55,153,221,0.18);
+        }
+        .align-card.is-aesrm .card-header{
+          color: #3799dd;
+          background: rgba(55,153,221,0.08);
+          border-bottom-color: rgba(55,153,221,0.30);
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px){
+          .align-card{ flex-basis: 220px; }
+        }
+
+
 
 
         
@@ -856,7 +948,6 @@
               <summary><span class="badge">AesRM-CoT</span> Click to expand</summary>
               <div class="details-body">
                 <pre class="cot-text">&lt;think&gt;
-                    
 <span class="cot-hd">[美学-a.基础画质与色彩]</span>
 提示词要求：画面需为“Cel-shaded isometric digital art”，特点是色彩“vibrant”、“lush”，但整体氛围是“softly glowing”和“quiet wonder”。这意味着色彩要鲜艳但不能刺眼，对比度要能营造立体感但不能丢失细节。视频A：画面整体亮度和对比度控制得当，呈现出一种柔和的质感。色彩饱和度适中，绿色调为主，搭配花朵的暖色点缀，既符合“vibrant”的要求，又通过光影的微妙变化营造了层次感。整体色调和谐，成功营造了提示词所描述的“enchanted”和“quiet wonder”的氛围。视频B：画面的饱和度过高，尤其是绿色和黄色，显得过于浓艳，略带“数码感”，削弱了画面的细腻度和真实感。对比度也偏高，导致部分高光区域（如树顶和花丛）的细节有所丢失，整体质感不如视频A柔和。得分（A相对B）：1 (视频A的色彩和光影处理更显柔和与精致，更符合提示词中“softly glowing”和“quiet wonder”的氛围要求，而视频B的色彩过于饱和，略显刺眼。)
 <span class="cot-hd">[美学-b.时间段]</span>
@@ -1130,507 +1221,90 @@
     </section>
 
 
+    <section id="alignment">
+      <div class="container">
+        <h2 style="margin-bottom: 30px;">Video Aesthetics Alignment</h2>
+        <p class="subsection-description" style="text-align:center; max-width: 900px; margin: 0 auto 35px;">
+          We align Wan2.2 with AesRM to improve video aesthetics. Below are 5 cases showing 7-model comparisons.
+          Drag/scroll horizontally to view all videos.
+        </p>
+    
+        <!-- ===== Case 01 ===== -->
+        <div class="align-case">
+          <div class="align-prompt">
+            <span class="align-prompt-tag">Prompt</span>
+            <span class="align-prompt-text">...你的case1 prompt...</span>
+          </div>
+    
+          <div class="align-scroll">
+            <div class="align-card">
+              <div class="card-header">Wan2.2</div>
+              <video autoplay loop muted playsinline preload="metadata" src="assets/alignment/case1/wan22.mp4"></video>
+            </div>
+    
+            <div class="align-card is-aesrm">
+              <div class="card-header">AesRM-Base</div>
+              <video autoplay loop muted playsinline preload="metadata" src="assets/alignment/case1/aesrm_base.mp4"></video>
+            </div>
+    
+            <div class="align-card is-aesrm">
+              <div class="card-header">AesRM-CoT</div>
+              <video autoplay loop muted playsinline preload="metadata" src="assets/alignment/case1/aesrm_cot.mp4"></video>
+            </div>
+    
+            <div class="align-card">
+              <div class="card-header">SFT</div>
+              <video autoplay loop muted playsinline preload="metadata" src="assets/alignment/case1/sft.mp4"></video>
+            </div>
+    
+            <div class="align-card">
+              <div class="card-header">LAP</div>
+              <video autoplay loop muted playsinline preload="metadata" src="assets/alignment/case1/lap.mp4"></video>
+            </div>
+    
+            <div class="align-card">
+              <div class="card-header">ArtiMuse</div>
+              <video autoplay loop muted playsinline preload="metadata" src="assets/alignment/case1/artimuse.mp4"></video>
+            </div>
+    
+            <div class="align-card">
+              <div class="card-header">VideoAlign</div>
+              <video autoplay loop muted playsinline preload="metadata" src="assets/alignment/case1/videoalign.mp4"></video>
+            </div>
+          </div>
+        </div>
+    
+        <!-- ===== Case 02~05：复制 align-case 改prompt和路径 ===== -->
+        <div class="align-case">
+          <div class="align-prompt">
+            <span class="align-prompt-tag">Prompt</span>
+            <span class="align-prompt-text">...case2 prompt...</span>
+          </div>
+          <div class="align-scroll">
+            <!-- 同上7个 align-card，换成 case2 路径 -->
+          </div>
+        </div>
+    
+        <div class="align-case"> ... Case 03 ... </div>
+        <div class="align-case"> ... Case 04 ... </div>
+        <div class="align-case"> ... Case 05 ... </div>
+    
+      </div>
+    </section>
+
 
 
    
-    <section id="more-results">
-        <div class="container">
-            <h2 style="margin-bottom: 40px;">More Challenging Cases</h2>
-            <p style="text-align: center; color: #64748b; margin-bottom: 40px;">
-                More qualitative results on complex instructions that are non-trivial and challenging to be synthesized by the data construction pipeline.
-            </p>
-
-            <div class="showcase-grid">
-                
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the background from the ocean to a vast, snowy mountain range."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/005/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/005/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Add a trail of fire coming from the back wheel of the bike."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/007/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/007/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Add a pair of large, white, feathered wings to the woman's back, and change woman's hair to red."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/026/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/026/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the material of the large dome in the background to be made of polished gold, and turn the sky to lightning and thunder."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/033/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/033/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the material of the cello to look as if it's carved from a single block of clear ice, and add audience members in the background."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/024/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/024/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Replace the water in the canal with flowing lava, and add a full head of black hair."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/009/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/009/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Replace the ice cream cone she is holding with a flaming torch."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/015/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/015/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Replace the dumbbells they are holding with flaming torches."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/012/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/012/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Add a large, ethereal planet with glowing rings hanging in the night sky."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/013/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/013/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the background to a night sky filled with colorful fireworks."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/031/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/031/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Make the mountain in the background an active volcano erupting with smoke and lava, and add a little cat running by the couple."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/034/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/034/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Replace the sky with a swirling, colorful galaxy nebula, and add a panda walking around."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/021/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/021/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Add steam rising from the food in the bowl."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/003/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/003/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the background to a bustling, neon-lit street in Tokyo at night."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/030/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/030/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the background to a vibrant sunset over the ocean."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/019/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/019/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Transform the scene to nighttime, with a full moon reflecting on the water."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/027/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/027/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Add several large, floating islands with waterfalls cascading down from them in the sky."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/022/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/022/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Turn the dirt ground into a rippling water surface."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/020/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/020/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Turn the cobblestone ground into a flowing river."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/035/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/035/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Add a dolphin leaping from the water in the background."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/032/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/032/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Turn the asphalt road into a vibrant, rainbow-colored path."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/016/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/016/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the water into a moving sea of clouds."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/017/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/017/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the background to a magical, glowing mushroom forest."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/011/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/011/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the background from a beach to a crowded street in London."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/004/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/004/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the brick wall into a large aquarium filled with colorful fish."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/006/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/006/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Change the waterfall into lava."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/071/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/071/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Transform into illustration style."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/095/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/095/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Transform into Chinese ink style."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/096/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/096/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Transform the entire scene into oil painting style."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/099/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/099/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Turn into folded-paper origami art style."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/102/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/102/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Remove the watermark."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/000/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/000/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Remove the watermark."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/001/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/001/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Remove the watermark."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/002/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/002/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <div style="margin-bottom: 10px; font-weight: 600; text-align: center;">"Remove the watermark."</div>
-                    <div class="compare-duo">
-                        <div>
-                            <div class="card-header">Source Video</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/003/src.mp4"></video>
-                        </div>
-                        <div class="is-ours">
-                            <div class="card-header">AesRM</div>
-                            <video autoplay loop muted playsinline src="assets/our_results/watermark/003/ours.mp4"></video>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
+   
     <section id="citation">
         <div class="container">
             <h2>Citation</h2>
             <div class="bibtex-box">
-<pre><code>@article{cong2025AesRM,
-  title={AesRM: VLM-Guided Instruction-Based Video Editing with Reward Optimization},
-  author={Cong, Xiaoyan and Yang, Haotian and Wang, Angtian and Wang, Yizhi and Yang, Yiding and Zhang, Canyu and Ma, Chongyang},
-  journal={arXiv preprint arXiv:2512.16906},
-  year={2025}
+<pre><code>@article{,
+  title={},
+  author={},
+  journal={},
+  year={}
 }</code></pre>
             </div>
         </div>
@@ -1643,9 +1317,15 @@
           // =========================
           // Part 1: Global Play/Pause button
           // =========================
-          const aesCases = document.querySelectorAll('.aes-case');        // 你的视频对在这里
-          const showcaseItems = document.querySelectorAll('.showcase-item'); // more-results 里的
-          const containers = [...aesCases, ...showcaseItems];
+          // const aesCases = document.querySelectorAll('.aes-case');        // 你的视频对在这里
+          // const showcaseItems = document.querySelectorAll('.showcase-item'); // more-results 里的
+          // const containers = [...aesCases, ...showcaseItems];
+            
+          const aesCases = document.querySelectorAll('.aes-case');
+          const alignCases = document.querySelectorAll('.align-case');       // 新增：alignment 的 case
+          const showcaseItems = document.querySelectorAll('.showcase-item');
+          const containers = [...aesCases, ...alignCases, ...showcaseItems]; // 改这里：把 alignCases 加进去
+
         
           let isGlobalPlaying = true; // default state (if you autoplay)
         
@@ -1705,86 +1385,6 @@
 
 
 
-                        
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Find all container blocks that have videos
-            const comparisonBlocks = document.querySelectorAll('.comparison-block');
-            const showcaseItems = document.querySelectorAll('.showcase-item');
-            
-            // Helper function to toggle all videos on the page
-            let isGlobalPlaying = true; // default state
-
-            function toggleGlobalPlayback(buttonClicked) {
-                const allVideos = document.querySelectorAll('video');
-                const allButtons = document.querySelectorAll('.video-control-btn');
-                
-                // Toggle state
-                isGlobalPlaying = !isGlobalPlaying;
-
-                // Perform action on all videos
-                allVideos.forEach(video => {
-                    if (isGlobalPlaying) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
-                });
-
-                // Update icons on all buttons to reflect the new state
-                allButtons.forEach(btn => {
-                    const icon = btn.querySelector('i');
-                    if (isGlobalPlaying) {
-                        icon.classList.remove('fa-play');
-                        icon.classList.add('fa-pause');
-                    } else {
-                        icon.classList.remove('fa-pause');
-                        icon.classList.add('fa-play');
-                    }
-                });
-            }
-
-            // 2. Inject buttons into these blocks
-            const containers = [...comparisonBlocks, ...showcaseItems];
-
-            containers.forEach(container => {
-                // Create button element
-                const btn = document.createElement('button');
-                btn.className = 'video-control-btn';
-                btn.title = 'Play/Pause All Videos';
-                
-                // Add icon (Pause by default as videos autoplay)
-                const icon = document.createElement('i');
-                icon.className = 'fa-solid fa-pause';
-                btn.appendChild(icon);
-
-                // Add click event
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent bubbling if needed
-                    toggleGlobalPlayback(btn);
-                });
-
-                // Append to container
-                container.appendChild(btn);
-            });
-        });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('pre.cot-text').forEach(pre => {
-        // 用 innerHTML 处理：把每行开头的 [xxx] 染色
-        // 注意：你的内容已经是 &lt;think&gt; 这种转义文本，所以这里是安全的
-        const esc = pre.innerHTML;
     
-        // 匹配：行首（或换行后）紧跟 [....]
-        const colored = esc.replace(/(^|\n)(\[[^\]\n]+\])/g, (m, p1, p2) => {
-          return `${p1}<span class="cot-hd">${p2}</span>`;
-        });
-    
-        pre.innerHTML = colored;
-      });
-    });
-    </script> -->
-
 </body>
 </html>
