@@ -1701,7 +1701,76 @@
     </section>
     <footer style="padding: 60px 0;"></footer>
 
+
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // =========================
+          // Part 1: Global Play/Pause button
+          // =========================
+          const aesCases = document.querySelectorAll('.aes-case');        // 你的视频对在这里
+          const showcaseItems = document.querySelectorAll('.showcase-item'); // more-results 里的
+          const containers = [...aesCases, ...showcaseItems];
+        
+          let isGlobalPlaying = true; // default state (if you autoplay)
+        
+          function toggleGlobalPlayback() {
+            const allVideos = document.querySelectorAll('video');
+            const allButtons = document.querySelectorAll('.video-control-btn');
+        
+            isGlobalPlaying = !isGlobalPlaying;
+        
+            allVideos.forEach(v => {
+              if (isGlobalPlaying) v.play();
+              else v.pause();
+            });
+        
+            allButtons.forEach(btn => {
+              const icon = btn.querySelector('i');
+              if (!icon) return;
+              if (isGlobalPlaying) {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+              } else {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+              }
+            });
+          }
+        
+          containers.forEach(container => {
+            const btn = document.createElement('button');
+            btn.className = 'video-control-btn';
+            btn.title = 'Play/Pause All Videos';
+        
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-pause';
+            btn.appendChild(icon);
+        
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              toggleGlobalPlayback();
+            });
+        
+            container.appendChild(btn);
+          });
+        
+          // =========================
+          // Part 2: Colorize CoT headings like [美学-b.时间段]
+          // =========================
+          document.querySelectorAll('pre.cot-text').forEach(pre => {
+            const esc = pre.innerHTML;
+            const colored = esc.replace(/(^|\n)(\[[^\]\n]+\])/g, (m, p1, p2) => {
+              return `${p1}<span class="cot-hd">${p2}</span>`;
+            });
+            pre.innerHTML = colored;
+          });
+        });
+        </script>
+
+
+
+                        
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Find all container blocks that have videos
             const comparisonBlocks = document.querySelectorAll('.comparison-block');
@@ -1779,7 +1848,7 @@
         pre.innerHTML = colored;
       });
     });
-    </script>
+    </script> -->
 
 </body>
 </html>
